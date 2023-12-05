@@ -7,9 +7,11 @@ public interface Amontoavel {
 
 	String detalharFamiliar(int i);
 
-	boolean buscarFamiliar(String familiar);
+	Object[] buscarFamiliar(String familiar);
 
 	void remover(Object dado);
+
+	void informacoesFamiliar();
 
 	String imprimir();
 

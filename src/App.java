@@ -5,7 +5,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         int opcao;
         String remove;
-        ArvoreGenealogicaMinimo arvore = new ArvoreGenealogicaMinimo();
+        ArvoreGenealogicaMinimo arvore = new ArvoreGenealogicaMinimo(10);
         do {
             exibirMenu();
             System.out.print("Escolha uma opcao (0-6): ");
@@ -29,9 +29,7 @@ public class App {
                     arvore.buscarFamiliar(busca);
                     break;
                 case 4:
-                    System.out.print("Digite o nome do familiar que deseja detalhar: ");
-                    String nomeDetalhar = scanner.next();
-
+                    arvore.informacoesFamiliar();
                     break;
                 case 5:
                     System.out.print("Digite o nome do membro da família a ser removido: ");

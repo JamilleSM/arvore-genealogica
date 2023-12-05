@@ -9,7 +9,7 @@ public class ArvoreGenealogicaMinimo implements Amontoavel {
         ponteiroFim = -1;
     }
 
-    public ArvoreGenealogicaMinimo() {
+    public ArvoreGenealogicaMinimo(String nome, int idade, char sexo) {
         this(10);
     }
 
@@ -33,6 +33,17 @@ public class ArvoreGenealogicaMinimo implements Amontoavel {
                 break;
             }
         }
+    }
+
+    public void informacoesFamiliar() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite a idade do familiar:");
+        String idade = scanner.nextLine();
+        System.out.println("Digite o sexo do familiar:");
+        String sexo = scanner.nextLine();
+        String informacao = "Idade: " + idade + ", Sexo: " + sexo;
+        inserir(informacao);
+        System.out.println(informacao);
     }
 
     private void ajustarAbaixo(int genitor) {
@@ -113,29 +124,32 @@ public class ArvoreGenealogicaMinimo implements Amontoavel {
     }
 
     @Override
-    public boolean buscarFamiliar(String familiar) {
-        boolean encontrado = buscarRecursivamente(familiar, 0);
+    public Object[] buscarFamiliar(String familiar) {
+        Object[] resultado = buscarRecursivamente(familiar, 0);
 
-        if (encontrado) {
-            System.out.println(familiar + " foi encontrado na árvore genealógica.");
+        if (resultado != null && resultado[0] != null) {
+            System.out.println(resultado[0] + " foi encontrado na árvore genealógica. Índice: " + resultado[1]);
         } else {
             System.out.println(familiar + " não foi encontrado na árvore genealógica.");
         }
 
-        return encontrado;
+        return resultado;
     }
 
-    private boolean buscarRecursivamente(String familiar, int indice) {
-        if (indice > ponteiroFim) {
-            return false;
+    private Object[] buscarRecursivamente(String familiar, int indice) {
+        if (indice > ponteiroFim || dados[indice] == null) {
+            return null;
         }
 
         if (dados[indice].equalsIgnoreCase(familiar)) {
-            return true;
+            return new Object[] { familiar, indice };
         }
-        if (buscarRecursivamente(familiar, 2 * indice + 1)) {
-            return true;
+
+        Object[] resultado = buscarRecursivamente(familiar, 2 * indice + 1);
+        if (resultado != null) {
+            return resultado;
         }
+
         return buscarRecursivamente(familiar, 2 * indice + 2);
     }
 
