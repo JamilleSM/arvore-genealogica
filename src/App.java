@@ -29,8 +29,9 @@ public class App {
                     arvore.buscarFamiliar(busca);
                     break;
                 case 4:
-                    System.out.print("Digite um nome para obter detalhes: ");
-                    detalhes(arvore);
+                    System.out.print("Digite o nome do familiar que deseja detalhar: ");
+                    String nomeDetalhar = scanner.next();
+
                     break;
                 case 5:
                     System.out.print("Digite o nome do membro da família a ser removido: ");
@@ -38,6 +39,9 @@ public class App {
                     arvore.remover(remove);
                     break;
                 case 6:
+                    System.out.print("Digite um nome para obter detalhes: ");
+                    String detalhe = scanner.next();
+                    relacionamentoFamiliar(arvore, detalhe);
                     break;
                 default:
                     System.out.println("Opcão invalida. Tente novamente.");
@@ -57,20 +61,13 @@ public class App {
         System.out.println("6. Verificação de Relacionamento familiar");
     }
 
-    private static void detalhes(ArvoreGenealogicaMinimo arvore) {
-        System.out.println(arvore.detalharFamiliar(0));
-        System.out.println("----------------------------");
-        System.out.println(arvore.detalharFamiliar(1));
-        System.out.println("----------------------------");
-        System.out.println(arvore.detalharFamiliar(2));
-        System.out.println("----------------------------");
-        System.out.println(arvore.detalharFamiliar(3));
-        System.out.println("----------------------------");
-        System.out.println(arvore.detalharFamiliar(4));
-        System.out.println("----------------------------");
-        System.out.println(arvore.detalharFamiliar(5));
-        System.out.println("----------------------------");
-        System.out.println(arvore.detalharFamiliar(6));
+    private static void relacionamentoFamiliar(ArvoreGenealogicaMinimo arvore, String nome) {
+        int indice = arvore.encontrarIndicePorNome(nome);
+        if (indice != -1) {
+            System.out.println(arvore.detalharFamiliar(indice));
+        } else {
+            System.out.println(nome + " não foi encontrado na árvore genealógica.");
+        }
     }
 
     private static String formataSaida(String msg) {

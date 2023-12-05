@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class ArvoreGenealogicaMinimo implements Amontoavel {
     private String[] dados;
     private int ponteiroFim;
@@ -99,6 +101,15 @@ public class ArvoreGenealogicaMinimo implements Amontoavel {
             detalhes += "\nIrmão: " + dados[indiceIrmao];
         }
         return detalhes;
+    }
+
+    public int encontrarIndicePorNome(String nome) {
+        for (int i = 0; i <= ponteiroFim; i++) {
+            if (dados[i].equals(nome)) {
+                return i;
+            }
+        }
+        return -1; // Retorna -1 se o nome não for encontrado
     }
 
     @Override
