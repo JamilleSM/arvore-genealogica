@@ -30,8 +30,7 @@ public class App {
                     break;
                 case 4:
                     System.out.print("Digite um nome para obter detalhes: ");
-                    String detalhe = scanner.next();
-                    arvore.detalharFamiliar(opcao);
+                    detalhes(arvore);
                     break;
                 case 5:
                     System.out.print("Digite o nome do membro da família a ser removido: ");
@@ -44,6 +43,7 @@ public class App {
                     System.out.println("Opcão invalida. Tente novamente.");
             }
         } while (opcao != 0);
+        scanner.close();
     }
 
     private static void exibirMenu() {
@@ -55,6 +55,22 @@ public class App {
         System.out.println("4. Detalhar Familiar");
         System.out.println("5. Remover Familiar");
         System.out.println("6. Verificação de Relacionamento familiar");
+    }
+
+    private static void detalhes(ArvoreGenealogicaMinimo arvore) {
+        System.out.println(arvore.detalharFamiliar(0));
+        System.out.println("----------------------------");
+        System.out.println(arvore.detalharFamiliar(1));
+        System.out.println("----------------------------");
+        System.out.println(arvore.detalharFamiliar(2));
+        System.out.println("----------------------------");
+        System.out.println(arvore.detalharFamiliar(3));
+        System.out.println("----------------------------");
+        System.out.println(arvore.detalharFamiliar(4));
+        System.out.println("----------------------------");
+        System.out.println(arvore.detalharFamiliar(5));
+        System.out.println("----------------------------");
+        System.out.println(arvore.detalharFamiliar(6));
     }
 
     private static String formataSaida(String msg) {
