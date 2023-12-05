@@ -129,7 +129,49 @@ public class ArvoreGenealogicaMinimo implements Amontoavel {
     }
 
     public void remover(Object dado) {
-        //
+        if (!estaVazia()) {
+            int indice = buscarRecursivamente(dado, 0);
+
+            if (indice != -1) {
+                removerRecursivamente(indice);
+            } else {
+                System.err.println("Familiar não encontrado na árvore genealógica.");
+            }
+        } else {
+            System.err.println("Árvore genealógica vazia. Nada a remover.");
+        }
+    }
+
+    private void removerRecursivamente(int indice) {
+        if (indice <= ponteiroFim) {
+            int filhoEsquerdo = 2 * indice + 1;
+            int filhoDireito = 2 * indice + 2;
+
+            removerRecursivamente(filhoEsquerdo);
+            removerRecursivamente(filhoDireito);
+
+            if (indice != ponteiroFim) {
+                dados[indice] = dados[ponteiroFim];
+            }
+            ponteiroFim--;
+        }
+    }
+
+    private int buscarRecursivamente(Object familiar, int indice) {
+        if (indice > ponteiroFim) {
+            return -1;
+        }
+
+        if (dados[indice].equalsIgnoreCase((String) familiar)) {
+            return indice;
+        }
+
+        int indiceEsquerdo = buscarRecursivamente(familiar, 2 * indice + 1);
+        if (indiceEsquerdo != -1) {
+            return indiceEsquerdo;
+        }
+
+        return buscarRecursivamente(familiar, 2 * indice + 2);
     }
 
     @Override

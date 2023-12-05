@@ -21,6 +21,7 @@ public class App {
                     arvore.inserir(nome);
                     break;
                 case 2:
+                    System.out.println(formataSaida(arvore.imprimir()));
                     break;
                 case 3:
                     System.out.print("Digite um nome para buscar: ");
@@ -39,8 +40,6 @@ public class App {
                     break;
                 case 6:
                     break;
-                case 7:
-                    System.out.println(formataSaida(arvore.imprimir()));
                 default:
                     System.out.println("Opcão invalida. Tente novamente.");
             }
@@ -56,7 +55,6 @@ public class App {
         System.out.println("4. Detalhar Familiar");
         System.out.println("5. Remover Familiar");
         System.out.println("6. Verificação de Relacionamento familiar");
-        System.out.println("7. Imprimir Membros");
     }
 
     private static String formataSaida(String msg) {
