@@ -13,9 +13,9 @@ public interface Amontoavel {
 
 	void informacoesFamiliar();
 
-	String imprimir();
-
 	boolean estaVazia();
 
 	boolean estaCheia();
+
+	String imprimir();
 }
